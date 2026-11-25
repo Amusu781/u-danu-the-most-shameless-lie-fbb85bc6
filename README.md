@@ -18,5 +18,5 @@ the claim, then the confession that undoes it.
 ## How it works
 
 `main.py` writes that single line to `/output/entry.txt` — nothing
-else, no setup, no excuse, no explanation. The readable source is
-`entry_src.py`; `main.py` is the kit-compressed entrypoint.
+else, no setup, no excuse, no explanation. `main.py` is plain,
+readable Python 3 using only the standard library.

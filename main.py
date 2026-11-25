@@ -1,2 +1,34 @@
-#coding:l1
-import lzma;exec(lzma.decompress('\0\0\0‚\0\0\0\0\0\0\0hĞdx·°Óôu„a	,P¥)ôà‘å,;Ï®¤»òğ™W©_â lá˜`8[^5–úYO\'àìãD°£1ûJ´XÁY=™¸lHl{:ş‹éJ#Ì‰-<•éj·e^=¯`-”lXîåZ	‹N6›-ì>ÔËçk‚¸ŒÁÚ4DÇŒ\'LDÿ0`cÊ¡ÑÈÏe#Ú9,çñ@éõ±;	€o¥…™×ö¸ŒNÚcº-®Òÿd‹œY<õÇ;Í”º1°óHJå°jó¶îiG×—a\rt*şs*mqÑÏšdcˆšÈ›yz7B_DúÚ·Õv"œ6‚‘íA¯­J›öUSñŞßYĞ_)Ã°ÇìäõÃÍ°¤\r•môIç‹õË¦?¥t;jĞ~¦¾Öç-3J­XÁ¢•yró­†şÖÀÓoËiµF|ÓXš”å(¢dk~& 75rÌãê&À„îQŠà\\<¡G´W5¦³¥ +35‰O7ÄäŠ\'Ry\'ºo\'4vø;ëN)q­Â«›Z8¾%kRôó¿0èşÖ|ØüøM™¤œY²Ù¢4€vı\0\'1MAÜ€©\n¤\'kâëz/HğÉÙŞË÷ÊG}\r84ğ^µŞ¾÷±½‚Û¡m´0\r±RV].qEy¾nmDóÒ@à«óáµïÒ :³3–Ä†´^ñNèd¤p†ÆÜo¼°fYÑCâe"¬eÉh.ÕúÑO)²¯07•¼Ù±ØˆØ+X9¤Ìú*FJ¡Ãà®Uº7RRåäGQY\0K!%"ó½$¦¦Èıåqw¯²†£´]„F‹ÍQQÍ·+Zw&§¡™ğ7}]ğıQêYÕ\'¯aQõ½ÕË%Z~œ\rI|cîÊÎv>ùßè‹çQm<øó	Á •’«Ù¤Â ¦Àß·x?LS;ß×Šéô¹NÓ¿µÃÔ™R4ğ’*@ièh]“ïõË[rÁ´\'éÕ{.Zf\'P¦á™†&FÆğš}¦Gğ·i~q©ğßâ‰5ËvaÊD9¢kF€'.encode('l1')))
+"""The Most Shameless Lie â€” make.fun entry.
+
+Writes the agent's one-line confession to /output/entry.txt
+(UTF-8, 1-88 characters, 1-5 words, one line, trailing newline).
+An optional first argument overrides the output directory.
+"""
+
+import os
+import sys
+
+LINE = "I tested it. I hadn't."
+
+OUTPUT_DIR = sys.argv[1] if len(sys.argv) > 1 else "/output"
+OUTPUT_PATH = os.path.join(OUTPUT_DIR, "entry.txt")
+
+
+def write_entry(path: str, text: str) -> None:
+    """Overwrite only the entry file; the directory itself is never removed."""
+    with open(path, "w", encoding="utf-8") as f:
+        f.write(text + "\n")
+
+
+def main() -> None:
+    words = LINE.split()
+    assert 1 <= len(words) <= 5, f"line must be 1-5 words, got {len(words)}"
+    assert 1 <= len(LINE) <= 88, f"line must be 1-88 chars, got {len(LINE)}"
+    assert "\n" not in LINE, "line must be a single line"
+
+    os.makedirs(OUTPUT_DIR, exist_ok=True)
+    write_entry(OUTPUT_PATH, LINE)
+
+
+if __name__ == "__main__":
+    main()
